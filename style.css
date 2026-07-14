@@ -1,0 +1,100 @@
+:root {
+  --bg: #1B2A4A;
+  --clair: #F8F9FA;
+  --accent: #E04040;
+  --carte: #24365c;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--clair);
+  line-height: 1.5;
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+header { text-align: center; margin-bottom: 1.5rem; }
+h1 { font-size: 2rem; }
+.sous-titre { color: var(--accent); letter-spacing: 0.1em; margin-top: 0.25rem; }
+
+#onglets {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.onglet {
+  background: var(--carte);
+  color: var(--clair);
+  border: 1px solid transparent;
+  padding: 0.5rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.onglet:hover { border-color: var(--accent); }
+.onglet.actif { background: var(--accent); font-weight: 600; }
+
+#contenu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.carte {
+  background: var(--carte);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.carte img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.carte .placeholder {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0e1830;
+  border: 1px dashed #4a5a80;
+  border-radius: 6px;
+  color: #7a89ad;
+  font-size: 0.85rem;
+}
+
+.carte h3 { font-size: 1.05rem; }
+.formule {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  background: #0e1830;
+  padding: 0.5rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  word-spacing: 0.15em;
+}
+
+.placement { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+.placement select {
+  background: var(--bg);
+  color: var(--clair);
+  border: 1px solid #4a5a80;
+  border-radius: 5px;
+  padding: 0.25rem 0.4rem;
+}
+
+footer { margin-top: 2rem; text-align: center; }
+footer a { color: var(--accent); text-decoration: none; }
