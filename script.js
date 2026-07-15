@@ -31,9 +31,14 @@ const formules = {
   ],
   f2l: [
   {
-    nomSimple: "F2L 1", nomDetail: "paire basique", baseImage: null, placementDefaut: "FR",
+    nomSimple: "F2L 1", nomDetail: "free pairs", baseImage: null, placementDefaut: "FR",
     sousMenu: "free pairs",
-    variantes: { FR: "U R U' R'", FL: "U' L' U L", BR: "U' R' U R", BL: "U L U' L'" },
+    variantes: { FR: "U R U' R'", FL: "", BR: "", BL: "" },
+    cube: {
+      U6: "vert", U9: "vert", // up
+      R1: "orange", R2: "orange", R5: "orange", R6: "orange", R8: "orange", R9: "orange", // right
+      F3: "blanc",F4: "vert", F5: "vert", F7: "vert", F8: "vert",  // face
+    },
   },
 ],
 oll: [
@@ -58,7 +63,7 @@ const contenu = document.getElementById("contenu");
 const sousFiltres = document.getElementById("sous-filtres");
 const onglets = document.querySelectorAll(".onglet");
 
-let etapeActive = "croix";
+let etapeActive = "f2l";
 let filtresActifs = new Set();   // sous-menus sélectionnés ; vide = tout afficher
 
 function creerCarte(f) {
@@ -77,15 +82,16 @@ function creerCarte(f) {
   const ligne = document.createElement("div");
   ligne.className = "ligne-haut";
 
-  const img = document.createElement("img");
-  img.className = "vignette";
-  img.alt = f.nomSimple;
-  ligne.appendChild(img);
-
-  const ph = document.createElement("div");
-  ph.className = "placeholder";
-  ph.textContent = "img";
-  ligne.appendChild(ph);
+  // --- Vignette : cube SVG si la carte a un "cube", sinon placeholder ---
+  const vignette = document.createElement("div");
+  vignette.className = "vignette-cube";
+  if (f.cube) {
+    vignette.innerHTML = genererCubeSVG(f.cube);
+  } else {
+    vignette.classList.add("placeholder");
+    vignette.textContent = "cube";
+  }
+  ligne.appendChild(vignette);
 
   const rect = document.createElement("div");
   rect.className = "rectangle";
@@ -116,18 +122,9 @@ function creerCarte(f) {
   }
   carte.appendChild(groupe);
 
-  // --- Applique un placement : met à jour formule + image + bouton actif ---
+  // --- Applique un placement : met à jour la formule + le bouton actif ---
   function appliquer(code) {
     formule.textContent = f.variantes[code] || "(à définir)";
-
-    if (f.baseImage) {
-      img.src = IMG_DIR + f.baseImage + "-" + code + IMG_EXT;
-      img.style.display = "";
-      ph.style.display = "none";
-    } else {
-      img.style.display = "none";
-      ph.style.display = "";
-    }
 
     Object.values(boutons).forEach((b) => b.classList.remove("actif"));
     boutons[code].classList.add("actif");

@@ -105,6 +105,13 @@ h1 { font-size: 2rem; }
 
 .vignette { background: #fff; }
 
+.vignette-cube {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+.vignette-cube svg { display: block; }
+
 .ligne-haut .placeholder {
   display: flex;
   align-items: center;
