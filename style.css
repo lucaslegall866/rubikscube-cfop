@@ -41,6 +41,28 @@ h1 { font-size: 2rem; }
 .onglet:hover { border-color: var(--accent); }
 .onglet.actif { background: var(--accent); font-weight: 600; }
 
+/* Barre de sous-filtres (multi-sélection) */
+#sous-filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+#sous-filtres:empty { display: none; }   /* pas de barre pour la Croix */
+
+.sous-filtre {
+  background: var(--carte);
+  color: var(--clair);
+  border: 1px solid #4a5a80;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;   /* forme "pilule" pour les distinguer des onglets */
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.sous-filtre:hover { border-color: var(--accent); }
+.sous-filtre.actif { background: var(--accent); border-color: var(--accent); font-weight: 600; }
+
 /* Les cartes s'empilent verticalement */
 #contenu {
   display: flex;
