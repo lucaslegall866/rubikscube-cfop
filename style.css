@@ -7,6 +7,15 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Reserve la place de la barre de defilement en permanence : evite que la page
+   se decale horizontalement quand on passe d'une categorie longue (F2L) a une
+   courte (OLL) ou l'inverse. overflow-y force la piste a rester visible ;
+   scrollbar-gutter est le mecanisme moderne, garde en complement. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background: var(--bg);
@@ -111,6 +120,16 @@ h1 { font-size: 2rem; }
   flex-shrink: 0;
 }
 .vignette-cube svg { display: block; }
+
+/* Schemas OLL / PLL plats (grille + languettes) — meme gabarit que le cube F2L */
+.vignette-oll,
+.vignette-pll {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+.vignette-oll svg,
+.vignette-pll svg { display: block; }
 
 .ligne-haut .placeholder {
   display: flex;
