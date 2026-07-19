@@ -11,6 +11,8 @@ const COULEURS = {
   blanc:    "#ffffff",
   neutre:   "#888888",   // sans interet (gris)
   vide:     "#cccccc",   // sticker non specifie
+  repere:   "#22d3ee",   // repere de reconnaissance PLL (cyan, absent du cube)
+  repere2:  "#c796e8",
 };
 
 // Faces "reelles" (toujours visibles) vs. rien d'autre pour l'instant.
